@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716005311) do
+ActiveRecord::Schema.define(:version => 20130716010504) do
+
+  create_table "organizations", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "img"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "pass_alongs", :force => true do |t|
     t.integer  "user_id"
@@ -25,6 +34,15 @@ ActiveRecord::Schema.define(:version => 20130716005311) do
   add_index "pass_alongs", ["organization_id"], :name => "index_pass_alongs_on_organization_id"
   add_index "pass_alongs", ["transaction_id"], :name => "index_pass_alongs_on_transaction_id"
   add_index "pass_alongs", ["user_id"], :name => "index_pass_alongs_on_user_id"
+
+  create_table "relationships", :force => true do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
   create_table "transactions", :force => true do |t|
     t.integer  "user_id"
