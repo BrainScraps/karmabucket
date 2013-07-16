@@ -11,7 +11,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130712233801) do
+ActiveRecord::Schema.define(:version => 20130716005311) do
+
+  create_table "pass_alongs", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "organization_id"
+    t.integer  "transaction_id"
+    t.text     "comment"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "pass_alongs", ["organization_id"], :name => "index_pass_alongs_on_organization_id"
+  add_index "pass_alongs", ["transaction_id"], :name => "index_pass_alongs_on_transaction_id"
+  add_index "pass_alongs", ["user_id"], :name => "index_pass_alongs_on_user_id"
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "pass_along_id"
+    t.integer  "amount"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "transactions", ["pass_along_id"], :name => "index_transactions_on_pass_along_id"
+  add_index "transactions", ["user_id"], :name => "index_transactions_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "fname"
