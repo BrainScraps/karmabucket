@@ -1,6 +1,11 @@
 Karmabucket::Application.routes.draw do
+
+  root :to =>  "static_pages#home", as: "root"
+  resource :organizations, except: :show
   devise_for :users
 
+  match 'organization/:id', to: 'organizations#show', as: 'show_organization'
+  match 'organizations', to: 'organizations#index', as: 'index_organizations'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
