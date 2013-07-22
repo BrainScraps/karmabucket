@@ -1,2 +1,10 @@
-%h1 Organizations#index
-%p Find me in app/views/organizations/index.html.haml
+%h1 Organizations
+%p Explore some of the organizations that people are passing their Karma along to!  
+
+- @organizations.each do |org|
+  .row-fluid.well
+    .span3
+      = image_tag org.img 
+    .span9
+      %h3= org.name
+      %p= org.description

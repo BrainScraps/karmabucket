@@ -1,4 +1,20 @@
-%h1= " Organization: #{@organization.name}" 
-%p Find me in app/views/organizations/show.html.haml
+%h2= " #{@organization.name}" 
+- if @organization.img 
+  = image_tag @organization.img
+
+%h3 About: 
+%p= @organization.description
+
+%h3 Homepage:
+%p= link_to @organization.url, @organization.url
+
+- unless @organization.users.empty?
+  %h3= "Supporters of #{@organization.name}" 
+  - @organization.users.each do |user|
+    .row-fluid.well
+      = link_to user.email, show_user_path(user)
+
+
+
 
 = link_to "Back", index_organizations_path
