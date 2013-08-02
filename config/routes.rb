@@ -6,6 +6,7 @@ Karmabucket::Application.routes.draw do
 
   match 'organization/:id', to: 'organizations#show', as: 'show_organization'
   match 'organizations', to: 'organizations#index', as: 'index_organizations'
+  match 'user/:id', to: 'users#show', as: 'show_user'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,9 @@
+%h2= @user.email
+
+%p= @user.profile
+
+%h3 Passing karma along to: 
+- @user.organizations.each do |org| 
+  .row-fluid.well
+    %h2
+      = link_to org.name, show_organization_path(org.id)

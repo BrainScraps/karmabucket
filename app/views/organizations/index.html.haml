@@ -6,5 +6,8 @@
     .span3
       = image_tag org.img 
     .span9
-      %h3= org.name
+      %h3
+        = link_to org.name, show_organization_path(org.id)
       %p= org.description
+      - unless org.users.empty?
+        %p= "Supporters: #{org.users.count}"
